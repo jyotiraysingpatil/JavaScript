@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function checkLargest(ev){
+            var n1=parseInt(document.getElementById("num1").value);
+            var n2=parseInt(document.getElementById("num2").value);
+            var n3=parseInt(document.getElementById("num3").value);
+            if(n1>n2 && n1>n3)
+            var result="n1 is greater";
+            else if(n2>n1 && n2>n3)
+            var result="n2 is gretaer";
+           else 
+           var result="n3 is greter";
+        document.getElementById("mydiv").innerHTML=result;
+        document.getElementById("Result").value=result;   
+        
+    }
+    </script>
+</head>
+<body>
+<form >
+Number1 : <input type="text" name="n1" id="num1" placeholder="enter number 1"><br>
+Number2 : <input type="text" name="n2" id="num2" placeholder="enter number 2"><br>
+Number3 : <input type="text" name="n3" id="num3" placeholder="enter number 3"><br>
+Result : <input type="text" name="Result" id="Result" placeholder="Result"><br>
+<button type="button" name="largest" id="largest" value="largest" onclick="checkLargest(event)">LargetofThreeNumber</button>
+
+</form>
+<div id="mydiv">
+   
+</div>
+</body>
+</html>
