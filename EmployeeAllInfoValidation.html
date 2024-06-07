@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            function validateTextBox(id, errid){
+                var v = $("#" + id).val();
+                if(v.trim().length === 0){
+                    $("#" + errid).html("Please enter valid data!!!");
+                    return false;
+                } else {
+                    $("#" + errid).html("");
+                    return true;
+                }
+            }
+    
+            function validateCheckBox(name, errid) {
+           if ($("input[name='" + name + "']:checked").length === 0) {
+               $("#" + errid).html("Please select one option");
+                 return false;
+                 } else {
+               $("#" + errid).html("");
+                 return true;
+                 }
+             }
+
+            function validateDropDown(id, errid){
+                var val = $("#" + id).val();
+                if(val === "skill"){
+                    $("#" + errid).html("Please select any one option");
+                    return false;        
+                } else {
+                    $("#" + errid).html("");
+                    return true;
+                }
+            }
+    
+            function validateRadioButtons(name, errid){
+                if($("input[name='" + name + "']:checked").length === 0){
+                    $("#" + errid).html("Please select any one field");
+                    return false;
+                } else {
+                    $("#" + errid).html("");
+                    return true;
+                }
+            }
+    
+            function validateFile(id, errid){
+                var f = document.getElementById(id).files[0];
+                if(f.size / 1024 < 70){
+                    $("#" + errid).html("");
+                    return true;
+                } else {
+                    $("#" + errid).html("File exceeds the size");
+                    return false;
+                }
+            }
+    
+            $("#frm").submit(function(event){  
+                var flag1 = validateTextBox("un", "erruname");
+                var flag2 = validateTextBox("p", "errpass");
+                var flag3 = validateFile("fi", "errfile");
+                var flag4 = validateDropDown("skills","errskills");
+                var flag5 = validateRadioButtons("fields","errFields");
+                var flag6=validateCheckBox("c","errlocation")
+                return flag1 && flag2 && flag3 && flag4 && flag5 && flag6;
+            });
+        });
+    </script>
+    
+</head>
+
+<body>
+    <form id="frm"> 
+        <label for="u">UserName:</label>
+        <input type="text" id="un" name="un" placeholder="User Name" required minlength="4" maxlength="7"><span id="erruname"></span><br><br>
+
+        <label for="pi">Password:</label>
+        <input type="text" id="p" name="p" placeholder="Password" required minlength="4" maxlength="7"><span id="errpass"></span><br><br>
+
+        <label for="i">Address: </label>
+        <input type="address" id="add" name="add" placeholder="Address" required><br><br>
+
+        <label for="drop">Select Skills:</label>
+        <select id="skills" name="skills">
+            <option value="skill">---Select One---</option>
+            <option value="Java">Java</option>
+            <option value="python">Python</option>
+            <option value="Html">HTML5 & CSS3</option>
+            <option value="c">C</option>
+            <option value="CPP">CPP</option>
+            <option value="M">MySql</option>
+            <option value="mo">MongoDB</option>
+        </select><span id="errskills"></span><br><br>
+
+        <label for="f">Upload Documents</label>
+        <input type="file" id="fi" name="fi" placeholder="Add Files" required><span id="errfile"></span> <br><br>
+
+       
+   Fields:  <input type="radio" id="tech" name="fields" placeholder="fields" >
+            <label for="tech">Technical </label>
+           <input type="radio" id="analytics" name="fields" placeholder="fields" >
+            <label for="analytics">Analytics </label>
+            <input type="radio" id="testing" name="fields" placeholder="fields" >
+           <label for="testing">Testing </label>
+             <span id="errFields"></span>
+<br><br>
+
+Are You Ready to Relocate: <input type="checkbox" id="c" name="c" >
+             <label for="c">Yes</label>
+             <input type="checkbox" id="d" name="d">
+             <label for="d">No</label>
+             <span id="errlocation"></span>
+
+        <br><br><button type="submit" name="btn" id="btn">Submit</button>
+        <div class="mydiv"> </div>
+    </form>
+</body>
+</html>
